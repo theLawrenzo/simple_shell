@@ -1,4 +1,4 @@
-#include <stdio.h>
+#include "shell.h"
 
 /**
  * main - Betty checks
@@ -7,6 +7,6 @@
  */
 int main(void)
 {
-	printf("Betty is awesome :)\n");
+	shell();
 	return (0);
 }
