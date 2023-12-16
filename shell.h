@@ -15,6 +15,8 @@
 
 int _putchar(char c);
 int prompt(char *str, size_t n);
+ssize_t _read(char **str, size_t *n, FILE *stream);
+char **split_str(char *str, char *sep);
 int shell(void);
 
 #endif

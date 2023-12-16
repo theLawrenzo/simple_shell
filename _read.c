@@ -51,5 +51,5 @@ ssize_t _read(char **str, size_t *n, FILE *stream)
 		}
 		str[len] = '\0';
 	}
-	return (len - 1);
+	return ((ssize_t)len - 1);
 }
