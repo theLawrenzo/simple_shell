@@ -1,56 +1,54 @@
-#include "shell.h"
+#include "shell.c"
 
 /**
- * shell - my shell
+ * shell - A simple command line interpreter
  *
- * Return: Always 0
+ * Return: On success 0
+ * On error or failure -1
  */
 int shell(void)
 {
-	char *args[MAX_ARG];
-	char cmd[MAX_LEN];
-	char *tkn;
-	int i;
+	char *str, **av, **envp;
+	size_t n;
+	ssize_t line;
 	pid_t pid;
 
+	printf("$ ");
 	while (1)
 	{
-		fprintf(stdout, "$ ");
-		fgets(cmd, sizeof(cmd), stdin);
-		cmd[strcspn(cmd, "\n")] = '\0';
-
-		if ((strcmp(cmd, "exit")) == 0)
+		str = NULL;
+		n = 0;
+		line = _read(&str, &n, stdin);
+		if (line < 0)
+			fprintf(stderr, "Error:\n");
+		av = split_str(str);
+		/**
+		 * Inside here create a function that checks
+		 * for the path and call the function
+		 */
+		envp = getcwd();
+		if (*av[i] == exit)
 		{
 			break;
 		}
-	}
-
-	tkn = strtok(cmd, " ");
-	i = 0;
-
-	while (tkn != NULL && i < MAX_ARG - 1)
-	{
-		args[i] = tkn;
-		tkn = strtok(NULL, " ");
-		i++;
-	}
-	args[i] = NULL;
-
-	pid = fork();
-	if (pid < 0)
-	{
-		perror("Error");
-	}
-	if (pid == 0)
-	{
-		if ((execve(args[0], args, NULL)) < 0)
+		/**
+		 * check if the command exist in that path
+		 * if it exits then create a new process
+		 */
+		pid = fork();
+		if ((pid = fork()) < 0)
 		{
-			perror("Error");
+			perror("Error:");
+			exit(EXIT_FAILURE);
 		}
-	}
-	else
-	{
-		wait(NULL);
+		if (pid == 0)
+		{
+			if ((execve(av[0], av, envp)) < 0)
+			{
+				perror("Error:");
+				exit(EXIT_FAILURE);
+			}
+		}
 	}
 
 	return (0);
