@@ -7,5 +7,8 @@
  */
 int main(void)
 {
-  return (0);
+	if (shell() == -1)
+		exit(EXIT_FAILURE);
+	
+	return (0);
 }
