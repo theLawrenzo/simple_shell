@@ -51,6 +51,8 @@ int main(void)
 			i++;
 		}
 	}
+	free(args);
+	free(str);
 
 	return (0);
 }

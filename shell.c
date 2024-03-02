@@ -26,7 +26,7 @@ int prompt(char *str, size_t n)
 char *_getenv(char *str)
 {
 	int i, j;
-	char *tmp, *var, c;
+	char *tmp, c;
 
 	i = 0;
 	while (environ[i] != NULL)
@@ -40,7 +40,6 @@ char *_getenv(char *str)
 		if (strcmp(tmp, str) == 0)
 		{
 			tmp[j] = c;
-			var = &environ[i][j + 1];
 			break;
 		}
 		i++;
@@ -48,7 +47,7 @@ char *_getenv(char *str)
 	if (environ[i] == NULL)
 		return (NULL);
 
-	return (var);
+	return (environ[i]);
 }
 
 /**
