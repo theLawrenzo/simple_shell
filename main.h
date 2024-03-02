@@ -1,6 +1,7 @@
 #ifndef MANI_H
 #define MAIN_H
 
+#define BUF 50
 #define ROW 30
 #define COL 30
 
@@ -13,6 +14,8 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <sys/wait.h>
+
+extern char **environ;
 
 typedef struct _path_to_dir {
 	struct _path_to_dir *prev;
