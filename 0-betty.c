@@ -1,14 +1,13 @@
-#include "main.h"
+#include <stdio.h>
 
 /**
- * main - call the shell function
+ * main - code that passes betty check
  *
- * Return: Always 0.
+ * Return: Nothing
  */
 int main(void)
 {
-	if (shell() == -1)
-		exit(EXIT_FAILURE);
+	printf("Hey betty\n");
 
 	return (0);
 }
