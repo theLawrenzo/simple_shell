@@ -5,10 +5,10 @@
  *
  * Return: Always 0
  */
-int prompt(char *ptr, size_t n)
+int prompt(char **ptr, size_t *n)
 {
 	printf("$ ");
-	if (getline(&ptr, &n) == -1)
+	if (getline(&ptr, &n, stdin) == -1)
 	{
 		perror("Error:");
 		return (-1);
@@ -25,7 +25,7 @@ int prompt(char *ptr, size_t n)
 char **alloc_2darr(void)
 {
 	char **av;
-	int i, j;
+	int i;
 
 	av = malloc(sizeof(char *) * ROW);
 	if (av == NULL)
@@ -87,13 +87,11 @@ char **tokens(char *str, char *delim)
  *
  * Return: Always 0.
  */
-int _which(char **av, char **env)
+int _which(char **av)
 {
 	unsigned int i;
 	struct stat st;
 
-	env[0] = getenv("PATH");
-	env[1] = NULL;
 	i = 0;
 	while (av[i])
 	{
