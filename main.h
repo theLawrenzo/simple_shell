@@ -12,7 +12,7 @@
 #include <errno.h>
 #include <sys/types.h>
 #include <sys/stat.h>
-#include <sys/wai.h>
+#include <sys/wait.h>
 
 typedef struct _path_to_dir {
 	struct _path_to_dir *prev;
@@ -23,7 +23,7 @@ typedef struct _path_to_dir {
 int prompt(char **ptr, size_t *n);
 char **alloc_2darr(void);
 char **tokens(char *str, char *delims);
-int _which(char **av, char **env);
+int _which(char **av);
 int shell(void);
 
 #endif
