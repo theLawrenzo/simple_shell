@@ -9,6 +9,6 @@ int main(void)
 {
 	if (shell() == -1)
 		exit(EXIT_FAILURE);
-	
+
 	return (0);
 }
